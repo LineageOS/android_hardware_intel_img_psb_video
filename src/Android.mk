@@ -106,6 +106,11 @@ LOCAL_SRC_FILES += \
     tng_hostair.c \
     tng_trace.c
 
+LOCAL_CFLAGS += \
+    -DPSBVIDEO_MRFL_VPP \
+    -DPSBVIDEO_MRFL \
+    -DSLICE_HEADER_PARSING
+
 ifeq ($(TARGET_HAS_ISV),true)
 LOCAL_SRC_FILES += \
     vsp_VPP.c \
@@ -114,7 +119,6 @@ LOCAL_SRC_FILES += \
     vsp_compose.c
 
 LOCAL_CFLAGS += \
-    -DPSBVIDEO_MRFL_VPP \
     -DPSBVIDEO_VPP_TILING
 endif
 
@@ -124,28 +128,14 @@ LOCAL_SRC_FILES += \
     vsp_vp8.c \
     vsp_cmdbuf.c \
     vsp_compose.c
-endif
 
-ifeq ($(TARGET_HAS_VPP),true)
+LOCAL_CFLAGS += \
+    -DPSBVIDEO_VPP_TILING
+
 LOCAL_C_INCLUDES += \
     $(TARGET_OUT_HEADERS)/libmedia_utils_vpp
-endif
 
-
-ifeq ($(TARGET_HAS_VPP),true)
 LOCAL_SHARED_LIBRARIES += libvpp_setting
-LOCAL_CFLAGS += DPSBVIDEO_MRFL_VPP_SETTING
-endif
-
-ifeq ($(TARGET_HAS_VPP),true)
-LOCAL_CFLAGS += \
-    -DPSBVIDEO_MRFL_VPP -DPSBVIDEO_MRFL \
-    -DPSBVIDEO_VPP_TILING -DSLICE_HEADER_PARSING
-else
-LOCAL_CFLAGS += \
-    -DPSBVIDEO_MRFL_VPP \
-    -DPSBVIDEO_MRFL \
-    -DSLICE_HEADER_PARSING
 endif
 
 ifeq ($(TARGET_BOARD_PLATFORM),merrifield)
@@ -156,8 +146,7 @@ endif
 
 else
 LOCAL_CFLAGS += \
-    -DPSBVIDEO_VXD392 -DBAYTRAIL \
-    -DPSBVIDEO_MSVDX_DEC_TILING -DPSBVIDEO_MSVDX_EC
+    -DBAYTRAIL
 endif
 
 ifeq ($(TARGET_HAS_MULTIPLE_DISPLAY),true)
