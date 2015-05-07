@@ -226,6 +226,6 @@ int pnw_context_flush_cmdbuf(object_context_p obj_context);
  *
  * Return the number of paralled cores used.
  */
-int pnw_get_parallel_core_number(object_context_p obj_context);
+uint32_t pnw_get_parallel_core_number(object_context_p obj_context);
 #endif /* _PNW_CMDBUF_H_ */
 

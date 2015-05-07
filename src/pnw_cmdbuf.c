@@ -630,7 +630,7 @@ int pnw_context_flush_cmdbuf(object_context_p obj_context)
 }
 
 
-int pnw_get_parallel_core_number(object_context_p obj_context)
+uint32_t pnw_get_parallel_core_number(object_context_p obj_context)
 {
 
     context_ENC_p ctx = (context_ENC_p)(obj_context->format_data);
