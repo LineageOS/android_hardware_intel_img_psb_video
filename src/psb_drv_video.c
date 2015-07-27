@@ -3465,7 +3465,7 @@ EXPORT VAStatus __vaDriverInit_0_31(VADriverContextP ctx)
         driver_data->profile2Format[VAProfileH264ConstrainedBaseline][VAEntrypointVLD] = &pnw_H264_vtable;
 
         driver_data->vpp_profile = &tng_yuv_processor_vtable;
-        driver_data->ved_vpp = 1;
+        //driver_data->ved_vpp = 1;
     }
 #endif
 
