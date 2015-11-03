@@ -91,6 +91,8 @@ static VAStatus pnw_MPEG4ES_ValidateConfig(
             break;
         case VAConfigAttribRateControl:
             break;
+        case VAConfigAttribEncAutoReference:
+            break;
         default:
             return VA_STATUS_ERROR_ATTR_NOT_SUPPORTED;
         }
