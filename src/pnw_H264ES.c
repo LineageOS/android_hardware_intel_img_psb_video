@@ -92,6 +92,10 @@ static VAStatus pnw_H264ES_ValidateConfig(
                 break;
             case VAConfigAttribRateControl:
                 break;
+            case VAConfigAttribEncAutoReference:
+                break;
+            case VAConfigAttribEncMaxRefFrames:
+                break;
             default:
                 return VA_STATUS_ERROR_ATTR_NOT_SUPPORTED;
         }
