@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff82abbf_93a003a8",
+        "filename": "src/android/psb_gralloc.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 8640
+      },
+      "writtenOn": "2015-11-28T04:28:24Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be not defined BAYTRAIL?",
+      "range": {
+        "startLine": 157,
+        "startChar": 6,
+        "endLine": 157,
+        "endChar": 13
+      },
+      "revId": "abd74f2e242cb08b7a222b87506b166735e38b35",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
