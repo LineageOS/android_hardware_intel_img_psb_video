@@ -1853,6 +1853,12 @@ void psb_SurfaceDeassociateSubpict(
 }
 
 
+#ifdef ASUS_ZENFONE2_LP_BLOBS
+#define NULL_ATTRIB_PTR
+#else
+#define NULL_ATTRIB_PTR NULL
+#endif
+
 static  VADisplayAttribute psb__DisplayAttribute[] = {
     {
         VADisplayAttribBrightness,
@@ -1860,7 +1866,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         BRIGHTNESS_MAX,
         BRIGHTNESS_DEFAULT_VALUE,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
 
     {
@@ -1869,7 +1875,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         CONTRAST_MAX,
         CONTRAST_DEFAULT_VALUE,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
 
     {
@@ -1878,7 +1884,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         HUE_MAX,
         HUE_DEFAULT_VALUE,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
 
     {
@@ -1887,7 +1893,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         SATURATION_MAX,
         SATURATION_DEFAULT_VALUE,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
     {
         VADisplayAttribBackgroundColor,
@@ -1895,7 +1901,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         0xffffffff,
         0x00000000,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
     {
         VADisplayAttribRotation,
@@ -1903,7 +1909,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         VA_ROTATION_270,
         VA_ROTATION_NONE,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
     {
         VADisplayAttribOutofLoopDeblock,
@@ -1911,7 +1917,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         VA_OOL_DEBLOCKING_TRUE,
         VA_OOL_DEBLOCKING_FALSE,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
     {
         VADisplayAttribBlendColor,
@@ -1919,7 +1925,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         0xffffffff,
         0x00000000,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
     {
         VADisplayAttribOverlayColorKey,
@@ -1927,7 +1933,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         0xffffffff,
         0x00000000,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
     {
         VADisplayAttribOverlayAutoPaintColorKey,
@@ -1935,7 +1941,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         0xffffffff,
         0x00000000,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
     {
         VADisplayAttribCSCMatrix,
@@ -1943,7 +1949,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         0xffffffff,
         0x00000000,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
     {
         VADisplayAttribRenderDevice,
@@ -1951,7 +1957,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         0xffffffff,
         0x00000000,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
     {
         VADisplayAttribRenderMode,
@@ -1959,7 +1965,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         0xffffffff,
         0x00000000,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     },
     {
         VADisplayAttribRenderRect,
@@ -1967,7 +1973,7 @@ static  VADisplayAttribute psb__DisplayAttribute[] = {
         0xffffffff,
         0x00000000,
         VA_DISPLAY_ATTRIB_GETTABLE | VA_DISPLAY_ATTRIB_SETTABLE,
-        NULL
+        NULL_ATTRIB_PTR
     }
 };
 
@@ -2170,7 +2176,11 @@ VAStatus psb_SetDisplayAttributes(
 
         case VADisplayAttribCSCMatrix:
             driver_data->load_csc_matrix = 1;
+#ifdef ASUS_ZENFONE2_LP_BLOBS
+            p_tmp = (float *)(p->value);
+#else
             p_tmp = (float *)(p->attrib_ptr);
+#endif
             for (j = 0; j < CSC_MATRIX_Y; j++)
                 for (k = 0; k < CSC_MATRIX_X; k++) {
                     if (p_tmp)
@@ -2224,12 +2234,20 @@ VAStatus psb_SetDisplayAttributes(
 #endif
             driver_data->render_mode = p->value & VA_RENDER_MODE_MASK;
             break;
-        case VADisplayAttribRenderRect:
-            driver_data->render_rect.x = ((VARectangle *)(p->attrib_ptr))->x;
-            driver_data->render_rect.y = ((VARectangle *)(p->attrib_ptr))->y;
-            driver_data->render_rect.width = ((VARectangle *)(p->attrib_ptr))->width;
-            driver_data->render_rect.height = ((VARectangle *)(p->attrib_ptr))->height;
+        case VADisplayAttribRenderRect: {
+            VARectangle *r;
+
+#ifdef ASUS_ZENFONE2_LP_BLOBS
+            r = (VARectangle *)(p->value);
+#else
+            r = (VARectangle *)p->attrib_ptr;
+#endif
+            driver_data->render_rect.x = r->x;
+            driver_data->render_rect.y = r->y;
+            driver_data->render_rect.width = r->width;
+            driver_data->render_rect.height = r->height;
             break;
+        }
 
         default:
             break;
