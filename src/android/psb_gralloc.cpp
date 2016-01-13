@@ -193,7 +193,7 @@ int gralloc_init(void)
 int gralloc_getdisplaystatus(buffer_handle_t handle,  int* status)
 {
     int err;
-#ifdef LP_BLOBS
+#ifdef ASUS_ZENFONE2_LP_BLOBS
     int (*get_display_status)(gralloc_module_t*, buffer_handle_t, int*);
 
     get_display_status = (int (*)(gralloc_module_t*, buffer_handle_t, int*))(mAllocMod->reserved_proc[0]);
