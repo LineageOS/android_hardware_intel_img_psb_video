@@ -183,7 +183,7 @@ VAStatus psb_surface_create_for_userptr(
     psb_surface->chroma_offset = chroma_u_offset;
     psb_surface->size = size;
     psb_surface->extra_info[4] = VA_FOURCC_NV12;
-#ifndef ASUS_ZENFONE2_LP_BLOBS
+#ifndef PRE_ION_X86
     psb_surface->extra_info[8] = VA_FOURCC_NV12;
 #endif
 
@@ -234,7 +234,7 @@ VAStatus psb_surface_create_from_kbuf(
     psb_surface->chroma_offset = chroma_u_offset;
     psb_surface->size = size;
     psb_surface->extra_info[4] = VA_FOURCC_NV12;
-#ifndef ASUS_ZENFONE2_LP_BLOBS
+#ifndef PRE_ION_X86
     psb_surface->extra_info[8] = VA_FOURCC_NV12;
 #endif
 
