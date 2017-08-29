@@ -1853,7 +1853,7 @@ void psb_SurfaceDeassociateSubpict(
 }
 
 
-#ifdef ASUS_ZENFONE2_LP_BLOBS
+#ifdef PRE_ION_X86
 #define NULL_ATTRIB_PTR
 #else
 #define NULL_ATTRIB_PTR NULL
@@ -2176,7 +2176,7 @@ VAStatus psb_SetDisplayAttributes(
 
         case VADisplayAttribCSCMatrix:
             driver_data->load_csc_matrix = 1;
-#ifdef ASUS_ZENFONE2_LP_BLOBS
+#ifdef PRE_ION_X86
             p_tmp = (float *)(p->value);
 #else
             p_tmp = (float *)(p->attrib_ptr);
@@ -2237,7 +2237,7 @@ VAStatus psb_SetDisplayAttributes(
         case VADisplayAttribRenderRect: {
             VARectangle *r;
 
-#ifdef ASUS_ZENFONE2_LP_BLOBS
+#ifdef PRE_ION_X86
             r = (VARectangle *)(p->value);
 #else
             r = (VARectangle *)p->attrib_ptr;

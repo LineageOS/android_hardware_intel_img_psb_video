@@ -177,6 +177,11 @@ LOCAL_SRC_FILES += android/psb_mds.cpp
 LOCAL_CFLAGS += -DTARGET_HAS_MULTIPLE_DISPLAY
 LOCAL_SHARED_LIBRARIES += libmultidisplay
 endif
+
+ifeq ($(BOARD_USES_PRE_ION_X86),true)
+   LOCAL_CFLAGS += -DPRE_ION_X86
+endif
+
 LOCAL_CFLAGS += -Werror
 
 LOCAL_MODULE_TAGS := optional
