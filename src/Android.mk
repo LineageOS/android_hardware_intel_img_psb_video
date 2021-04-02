@@ -47,7 +47,6 @@ LOCAL_CFLAGS := \
 LOCAL_C_INCLUDES := \
     $(call include-path-for, libhardware)/hardware \
     system/core/libsync/include \
-    $(TARGET_OUT_HEADERS)/libva \
     $(TARGET_OUT_HEADERS)/libttm \
     $(TARGET_OUT_HEADERS)/libwsbm \
     $(TARGET_OUT_HEADERS)/libdrm \
@@ -60,7 +59,7 @@ LOCAL_C_INCLUDES += \
     $(TOP)/system/core/libion/kernel-headers \
 
 LOCAL_SHARED_LIBRARIES += libdl libdrm libwsbm libcutils \
-    libutils libbinder libhardware liblog libsync libnativewindow
+    libutils libbinder libhardware liblog libsync libnativewindow libva
 
 LOCAL_HEADER_LIBRARIES := \
     libsystem_headers
