@@ -54,12 +54,8 @@ LOCAL_C_INCLUDES := \
     $(TARGET_OUT_HEADERS)/pvr \
     $(LOCAL_PATH)/hwdefs
 
-# Use the frozen version of ion.h.
-LOCAL_C_INCLUDES += \
-    $(TOP)/system/core/libion/kernel-headers \
-
 LOCAL_SHARED_LIBRARIES += libdl libdrm libwsbm libcutils \
-    libutils libbinder libhardware liblog libsync libnativewindow libva
+    libutils libbinder libhardware liblog libsync libnativewindow libion libva
 
 LOCAL_HEADER_LIBRARIES := \
     libsystem_headers
