@@ -58,6 +58,7 @@ LOCAL_SHARED_LIBRARIES += libdl libdrm libwsbm libcutils \
     libutils libbinder libhardware liblog libsync libnativewindow libion libva
 
 LOCAL_HEADER_LIBRARIES := \
+    intel_hwcomposer_headers \
     libsystem_headers
 
 LOCAL_SRC_FILES := \
