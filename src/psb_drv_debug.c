@@ -29,7 +29,7 @@
 
 #include <va/va_backend.h>
 #include <va/va_backend_tpi.h>
-#include <va/va_backend_egl.h>
+#include <va/egl/va_backend_egl.h>
 #include <va/va_drmcommon.h>
 #include <stdlib.h>
 

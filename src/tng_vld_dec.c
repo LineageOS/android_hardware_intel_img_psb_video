@@ -181,8 +181,10 @@ int vld_dec_slice_parameter_size(object_context_p obj_context)
         break;
     case VAProfileVP8Version0_3:
         size = sizeof(VASliceParameterBufferVP8);
+        break;
     case VAProfileJPEGBaseline:
         size = sizeof(VASliceParameterBufferJPEGBaseline);
+        break;
     default:
         size = 0;
         break;

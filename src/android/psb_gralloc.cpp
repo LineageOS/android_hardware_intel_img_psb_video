@@ -37,7 +37,7 @@
 #ifdef BAYTRAIL
 #include <ufo/gralloc.h>
 #else
-#include <hal/hal_public.h>
+#include <hal_public.h>
 #include <sync/sync.h>
 #endif
 

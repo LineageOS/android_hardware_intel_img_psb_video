@@ -2210,6 +2210,7 @@ VAStatus psb_SetDisplayAttributes(
 
         case VADisplayAttribRenderDevice:
             driver_data->render_device = p->value & VA_RENDER_DEVICE_MASK;
+            __attribute__ ((fallthrough));
         case VADisplayAttribRenderMode:
 #ifndef ANDROID
             if (p->value & VA_RENDER_MODE_EXTERNAL_GPU) {

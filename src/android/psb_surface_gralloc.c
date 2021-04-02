@@ -34,7 +34,7 @@
 #include "android/psb_gralloc.h"
 #include "android/psb_android_glue.h"
 #ifndef BAYTRAIL
-#include <hal/hal_public.h>
+#include <hal_public.h>
 #endif
 #include <wsbm/wsbm_manager.h>
 
